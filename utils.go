@@ -15,7 +15,7 @@ type Lifecycle interface {
 }
 
 // WithContextTimeout 使用超时上下文执行函数
-func WithContextTimeout(timeout time.Duration, fn func(ctx context.Context) error) error {
+func WithContextTimeout(timeout time.Duration, fn func(ctcontext.Context.Context) error) error {
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
@@ -58,7 +58,7 @@ func RecoverWithFunc(onPanic func(r interface{})) {
 }
 
 // RecoverGoroutine 在goroutine中捕获panic并记录
-func RecoverGoroutine(ctx Context, location string) {
+func RecoverGoroutine(ctcontext.Context, location string) {
 	if r := recover(); r != nil {
 		stack := takeStack()
 		ctx.Error(location, "goroutine panic", nil, H{
@@ -69,7 +69,7 @@ func RecoverGoroutine(ctx Context, location string) {
 }
 
 // SafeGo 安全启动goroutine
-func SafeGo(ctx Context, location string, fn func()) {
+func SafeGo(ctcontext.Context, location string, fn func()) {
 	go func() {
 		defer RecoverGoroutine(ctx, location)
 		fn()

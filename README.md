@@ -43,7 +43,7 @@ _loggerManager.Close()
 
 ```go
 // 订阅事件
-ctx.On("user.created", func(ctx Context, payload interface{}) {
+ctx.On("user.created", func(ctcontext.Context, payload interface{}) {
     // 处理事件
 })
 

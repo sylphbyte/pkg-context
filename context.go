@@ -3,7 +3,6 @@ package context
 import (
 	"context"
 	"fmt"
-	"github.com/go-redis/redis/v8"
 	"sync"
 	"time"
 
@@ -243,7 +242,7 @@ func (d *DefaultContext) TakeLogger() ILogger {
 	return d.logger
 }
 
-func (d *DefaultContext) Clone() (ctx Context) {
+func (d *DefaultContext) Clone() ctcontext.Context {
 	ctx = &DefaultContext{
 		Context: context.Background(),
 		Header:  d.Header.Clone(),
@@ -292,7 +291,7 @@ func (d *DefaultContext) JwtClaim() (claim IJwtClaim) {
 }
 
 // 新增统一的错误处理工具函数
-func handleError(ctx Context, location string, operation string, err error, data H) {
+func handleError(ctcontext.Context, location string, operation string, err error, data H) {
 	if err == nil {
 		return
 	}

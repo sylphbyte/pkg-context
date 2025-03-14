@@ -11,7 +11,7 @@ type event struct {
 }
 
 // EventHandler 定义事件处理函数
-type EventHandler func(ctx Context, payload interface{})
+type EventHandler func(ctcontext.Context, payload interface{})
 
 // NewEvent 创建新的事件系统
 func newEvent() *event {
@@ -46,7 +46,7 @@ func (es *event) Off(eventName string) {
 }
 
 // Emit 触发事件
-func (es *event) Emit(ctx Context, eventName string, payload interface{}) {
+func (es *event) Emit(ctcontext.Context, eventName string, payload interface{}) {
 	if handlers, ok := es.subscribers.Load(eventName); ok {
 		if storedHandlers, ok := handlers.([]EventHandler); ok {
 			for _, h := range storedHandlers {
@@ -58,7 +58,7 @@ func (es *event) Emit(ctx Context, eventName string, payload interface{}) {
 }
 
 // AsyncEmit 异步触发事件
-func (es *event) AsyncEmit(ctx Context, eventName string, payload interface{}) {
+func (es *event) AsyncEmit(ctcontext.Context, eventName string, payload interface{}) {
 	if handlers, ok := es.subscribers.Load(eventName); ok {
 		if storedHandlers, ok := handlers.([]EventHandler); ok {
 			var wg sync.WaitGroup
@@ -80,7 +80,7 @@ func (es *event) AsyncEmit(ctx Context, eventName string, payload interface{}) {
 }
 
 // AsyncEmitNoWait 异步触发事件但不等待完成
-func (es *event) AsyncEmitNoWait(ctx Context, eventName string, payload interface{}) {
+func (es *event) AsyncEmitNoWait(ctcontext.Context, eventName string, payload interface{}) {
 	if handlers, ok := es.subscribers.Load(eventName); ok {
 		if storedHandlers, ok := handlers.([]EventHandler); ok {
 			for _, h := range storedHandlers {

@@ -1,9 +1,7 @@
 package context
 
 import (
-	"context"
 	"fmt"
-	"github.com/go-redis/redis/v8"
 	"sync"
 	"time"
 )
@@ -114,6 +112,6 @@ func (r *robot) Send(title, content string, fieldsGroup ...H) error {
 
 func allowSend(key string) bool {
 	key = md5String(key)
-	__robotRds.SetXX(context.Background(), key, 0, time.Minute*10)
+	__robotRds.SetXcontext.Context.Background(), key, 0, time.Minute * 10)
 	return true
 }
